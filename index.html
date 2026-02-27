@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Oasis Report | Self-Storage Market Intelligence</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=Orbitron:wght@400;700;900&display=swap');
+:root{--bg:#080c0a;--bg2:#0d1410;--border:#1a2e1e;--border-bright:#2a4a30;--green:#00e87a;--red:#ff4455;--white:#e8f0ea;--dim:#5a7560;--mono:'Share Tech Mono',monospace;--display:'Rajdhani',sans-serif;--title:'Orbitron',monospace;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--white);font-family:var(--mono);font-size:12px;min-height:100vh;}
+body::before{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.08) 2px,rgba(0,0,0,0.08) 4px);pointer-events:none;z-index:9999;}
+.header{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid var(--border-bright);background:var(--bg2);position:sticky;top:0;z-index:100;}
+.logo-area{display:flex;align-items:center;gap:12px;}
+.logo-diamond{color:var(--green);font-size:22px;text-shadow:0 0 12px var(--green);}
+.logo-text h1{font-family:var(--title);font-size:16px;font-weight:700;color:var(--green);letter-spacing:3px;text-shadow:0 0 20px rgba(0,232,122,0.4);}
+.logo-text p{font-size:10px;color:var(--dim);letter-spacing:2px;margin-top:2px;}
+.header-right{display:flex;align-items:center;gap:16px;}
+.market-status{display:flex;align-items:center;gap:6px;padding:4px 10px;border:1px solid var(--green);font-size:10px;color:var(--green);letter-spacing:1px;}
+.status-dot{width:6px;height:6px;border-radius:50%;background:var(--green);}
+.clock{font-size:14px;color:var(--white);letter-spacing:2px;}
+.ticker-wrap{background:#060a07;border-bottom:1px solid var(--border);overflow:hidden;padding:6px 0;}
+.ticker-track{display:flex;animation:ticker 60s linear infinite;white-space:nowrap;}
+@keyframes ticker{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+.ticker-item{display:inline-flex;align-items:center;gap:6px;padding:0 24px;border-right:1px solid var(--border);font-size:11px;}
+.ticker-label{color:var(--dim);font-size:10px;letter-spacing:1px;}
+.ticker-val{color:var(--white);font-weight:bold;}
+.up{color:var(--green);} .dn{color:var(--red);} .neutral{color:var(--dim);}
+.conn-bar{background:#070b08;border-bottom:1px solid var(--border);padding:4px 20px;display:flex;justify-content:space-between;}
+.conn-label{font-size:10px;color:var(--dim);letter-spacing:1px;}
+.conn-label span{color:var(--green);}
+.cta-banner{background:linear-gradient(90deg,#091409,#102018,#091409);border:1px solid var(--border-bright);border-left:3px solid var(--green);border-right:3px solid var(--green);padding:18px 32px;display:flex;align-items:center;justify-content:space-between;position:relative;margin:14px 20px;}
+.cta-banner::before,.cta-banner::after{content:'';position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--green),transparent);opacity:0.5;}
+.cta-banner::before{top:0;} .cta-banner::after{bottom:0;}
+.cta-headline{font-family:var(--title);font-size:13px;font-weight:700;color:var(--green);letter-spacing:3px;margin-bottom:6px;text-shadow:0 0 20px rgba(0,232,122,0.4);}
+.cta-sub{font-size:11px;color:var(--white);letter-spacing:1px;margin-bottom:8px;}
+.cta-tags{display:flex;gap:20px;}
+.cta-tag{display:flex;align-items:center;gap:5px;font-size:9px;color:var(--green);letter-spacing:1px;}
+.cta-divider{width:1px;height:60px;background:var(--border-bright);margin:0 28px;flex-shrink:0;}
+.cta-contacts{display:flex;gap:24px;align-items:center;flex-shrink:0;}
+.cta-contact-label{font-size:9px;color:var(--dim);letter-spacing:2px;margin-bottom:5px;}
+.cta-name{font-family:var(--display);font-size:15px;font-weight:700;color:var(--white);margin-bottom:2px;}
+.cta-phone{display:block;font-family:var(--title);font-size:17px;color:var(--green);font-weight:700;letter-spacing:2px;text-decoration:none;text-shadow:0 0 12px rgba(0,232,122,0.4);margin-bottom:2px;}
+.cta-email{font-size:10px;color:var(--dim);text-decoration:none;letter-spacing:1px;}
+.cta-btn{display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--green);color:var(--bg);padding:14px 20px;text-decoration:none;font-family:var(--title);font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;flex-shrink:0;line-height:1.6;box-shadow:0 0 20px rgba(0,232,122,0.3);}
+.main{padding:16px 20px;display:flex;flex-direction:column;gap:16px;}
+.section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+.section-title{font-size:11px;color:var(--dim);letter-spacing:3px;text-transform:uppercase;display:flex;align-items:center;gap:8px;}
+.section-title::before{content:'';display:inline-block;width:3px;height:14px;background:var(--green);box-shadow:0 0 8px var(--green);}
+.section-badge{font-size:9px;padding:2px 8px;border:1px solid var(--green);color:var(--green);letter-spacing:1px;}
+.cards-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+.card{background:var(--bg2);border:1px solid var(--border);border-left:2px solid var(--green);padding:14px 16px;}
+.card-label{font-size:9px;color:var(--dim);letter-spacing:2px;margin-bottom:8px;}
+.card-value{font-family:var(--display);font-size:26px;font-weight:700;color:var(--white);line-height:1;margin-bottom:6px;}
+.card-change{font-size:11px;}
+.card-sub{font-size:9px;color:var(--dim);margin-top:4px;letter-spacing:1px;}
+.reit-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;}
+.two-col{display:grid;grid-template-columns:1fr 340px;gap:16px;}
+.intel-feed{background:var(--bg2);border:1px solid var(--border);}
+.intel-head{padding:10px 14px;border-bottom:1px solid var(--border);}
+.intel-items{max-height:420px;overflow-y:auto;}
+.intel-item{padding:12px 14px;border-bottom:1px solid var(--border);}
+.intel-item-meta{display:flex;align-items:center;gap:8px;margin-bottom:5px;}
+.intel-source{font-size:9px;color:var(--dim);letter-spacing:1px;}
+.intel-age{font-size:9px;color:#3a5040;}
+.intel-tag{font-size:8px;padding:1px 5px;background:rgba(0,232,122,0.1);color:var(--green);border:1px solid rgba(0,232,122,0.2);letter-spacing:1px;}
+.intel-title{font-family:var(--display);font-size:13px;font-weight:500;color:var(--white);margin-bottom:4px;}
+.intel-summary{font-size:10px;color:var(--dim);line-height:1.5;}
+.caprate-panel{background:var(--bg2);border:1px solid var(--border);}
+.panel-head{padding:10px 14px;border-bottom:1px solid var(--border);}
+.caprate-row{display:flex;align-items:center;padding:8px 14px;border-bottom:1px solid var(--border);}
+.caprate-row:last-child{border-bottom:none;}
+.caprate-type{font-size:9px;color:var(--dim);letter-spacing:1px;flex:1;}
+.caprate-bar-wrap{flex:2;height:3px;background:var(--border);margin:0 12px;}
+.caprate-bar{height:100%;background:var(--green);box-shadow:0 0 6px var(--green);}
+.caprate-val{font-family:var(--display);font-size:15px;font-weight:600;color:var(--green);min-width:50px;text-align:right;}
+.trans-table{background:var(--bg2);border:1px solid var(--border);}
+.trans-head{padding:10px 14px;border-bottom:1px solid var(--border);}
+table{width:100%;border-collapse:collapse;}
+thead th{padding:8px 12px;font-size:9px;color:var(--dim);letter-spacing:2px;text-align:left;border-bottom:1px solid var(--border);background:#0a0f0b;}
+tbody tr{border-bottom:1px solid var(--border);}
+tbody tr:last-child{border-bottom:none;}
+tbody td{padding:9px 12px;font-size:11px;color:var(--white);}
+.td-dim{color:var(--dim);} .td-green{color:var(--green);font-weight:bold;}
+.td-state{font-size:9px;padding:2px 6px;background:rgba(0,232,122,0.06);border:1px solid var(--border);color:var(--dim);letter-spacing:1px;}
+.ai-panel{background:var(--bg2);border:1px solid var(--green);padding:16px;position:relative;}
+.ai-panel::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--green),transparent);}
+.ai-title{font-family:var(--title);font-size:11px;color:var(--green);letter-spacing:3px;margin-bottom:12px;}
+.ai-content{font-size:11px;color:#8aaa90;line-height:1.7;}
+.ai-content strong{color:var(--white);font-weight:normal;}
+.footer{padding:12px 20px;border-top:1px solid var(--border);display:flex;justify-content:space-between;background:var(--bg2);}
+.footer-data,.footer-disclaimer{font-size:9px;color:#2a4030;letter-spacing:1px;}
+.loading{color:var(--dim);}
+.update-label{font-size:9px;color:var(--dim);letter-spacing:1px;}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="logo-area">
+    <div class="logo-diamond">◈</div>
+    <div class="logo-text">
+      <h1>The Oasis Report</h1>
+      <p>Self-Storage Market Intelligence · Oasis Investment Sales</p>
+    </div>
+  </div>
+  <div class="header-right">
+    <div style="display:flex;gap:16px;align-items:center;border-right:1px solid #1a2e1e;padding-right:20px;margin-right:4px;">
+      <div style="text-align:right;">
+        <div style="font-family:'Rajdhani',sans-serif;font-size:12px;font-weight:600;color:#e8f0ea;">Jon Fawley</div>
+        <div style="font-size:9px;color:#5a7560;margin-top:1px;">President</div>
+        <a href="tel:9376025193" style="display:block;font-size:9px;color:#00e87a;text-decoration:none;margin-top:3px;">937-602-5193</a>
+        <a href="mailto:jfawley@oasis-cre.com" style="font-size:9px;color:#5a7560;text-decoration:none;">jfawley@oasis-cre.com</a>
+      </div>
+      <div style="width:1px;height:32px;background:#1a2e1e;"></div>
+      <div style="text-align:right;">
+        <div style="font-family:'Rajdhani',sans-serif;font-size:12px;font-weight:600;color:#e8f0ea;">Storm Smitherman</div>
+        <div style="font-size:9px;color:#5a7560;margin-top:1px;">Agent</div>
+        <a href="mailto:storm@oasis-cre.com" style="font-size:9px;color:#5a7560;text-decoration:none;">storm@oasis-cre.com</a>
+      </div>
+    </div>
+    <div class="market-status"><div class="status-dot"></div><span id="mkt-status">CHECKING...</span></div>
+    <div class="clock" id="clock">--:--:-- EST</div>
+  </div>
+</header>
+
+<div class="conn-bar">
+  <div class="conn-label">⚡ FEEDS: <span>VERCEL API</span> · <span>FRED API</span> · <span>LISTSELFSTORAGE.COM</span></div>
+  <div class="update-label">LAST UPDATE: <span id="last-update">--:--</span></div>
+</div>
+
+<div class="ticker-wrap">
+  <div class="ticker-track">
+    <div class="ticker-item"><span class="ticker-label">PSA</span> <span class="ticker-val" id="t-PSA">---</span> <span id="t-PSA-ch">--</span></div>
+    <div class="ticker-item"><span class="ticker-label">CUBE</span> <span class="ticker-val" id="t-CUBE">---</span> <span id="t-CUBE-ch">--</span></div>
+    <div class="ticker-item"><span class="ticker-label">EXR</span> <span class="ticker-val" id="t-EXR">---</span> <span id="t-EXR-ch">--</span></div>
+    <div class="ticker-item"><span class="ticker-label">NSA</span> <span class="ticker-val" id="t-NSA">---</span> <span id="t-NSA-ch">--</span></div>
+    <div class="ticker-item"><span class="ticker-label">VNQ</span> <span class="ticker-val" id="t-VNQ">---</span></div>
+    <div class="ticker-item"><span class="ticker-label">10YR TREASURY</span> <span class="ticker-val" id="t-TNX">---</span></div>
+    <div class="ticker-item"><span class="ticker-label">FED FUNDS</span> <span class="ticker-val">4.33%</span></div>
+    <div class="ticker-item"><span class="ticker-label">SS AVG CAP RATE</span> <span class="ticker-val">6.0%</span></div>
+    <div class="ticker-item"><span class="ticker-label">PSA</span> <span class="ticker-val" id="t-PSA2">---</span> <span id="t-PSA-ch2">--</span></div>
+    <div class="ticker-item"><span class="ticker-label">CUBE</span> <span class="ticker-val" id="t-CUBE2">---</span> <span id="t-CUBE-ch2">--</span></div>
+    <div class="ticker-item"><span class="ticker-label">EXR</span> <span class="ticker-val" id="t-EXR2">---</span> <span id="t-EXR-ch2">--</span></div>
+    <div class="ticker-item"><span class="ticker-label">NSA</span> <span class="ticker-val" id="t-NSA2">---</span> <span id="t-NSA-ch2">--</span></div>
+    <div class="ticker-item"><span class="ticker-label">VNQ</span> <span class="ticker-val" id="t-VNQ2">---</span></div>
+    <div class="ticker-item"><span class="ticker-label">10YR TREASURY</span> <span class="ticker-val" id="t-TNX2">---</span></div>
+    <div class="ticker-item"><span class="ticker-label">FED FUNDS</span> <span class="ticker-val">4.33%</span></div>
+    <div class="ticker-item"><span class="ticker-label">SS AVG CAP RATE</span> <span class="ticker-val">6.0%</span></div>
+  </div>
+</div>
+
+<!-- CTA BANNER -->
+<div class="cta-banner">
+  <div style="flex:1;">
+    <div class="cta-headline">◈ WHAT IS YOUR FACILITY WORTH TODAY?</div>
+    <div class="cta-sub">Get a free, confidential market valuation from the nation's leading self-storage investment specialists.</div>
+    <div class="cta-tags">
+      <div class="cta-tag">✓ FREE VALUATION</div>
+      <div class="cta-tag">✓ 100% CONFIDENTIAL</div>
+      <div class="cta-tag">✓ NO OBLIGATION</div>
+      <div class="cta-tag">✓ NATIONWIDE</div>
+    </div>
+  </div>
+  <div class="cta-divider"></div>
+  <div class="cta-contacts">
+    <div>
+      <div class="cta-contact-label">CALL OR EMAIL</div>
+      <div class="cta-name">Jon Fawley</div>
+      <a href="tel:9376025193" class="cta-phone">937-602-5193</a>
+      <a href="mailto:jfawley@oasis-cre.com" class="cta-email">jfawley@oasis-cre.com</a>
+    </div>
+    <div style="width:1px;height:50px;background:#1a2e1e;"></div>
+    <div>
+      <div class="cta-contact-label">OR REACH</div>
+      <div class="cta-name">Storm Smitherman</div>
+      <a href="mailto:storm@oasis-cre.com" class="cta-email">storm@oasis-cre.com</a>
+    </div>
+    <div style="width:1px;height:50px;background:#1a2e1e;"></div>
+    <a href="mailto:jfawley@oasis-cre.com?subject=Self-Storage%20Valuation%20Request&body=Hi%20Jon%2C%0A%0AI%20am%20interested%20in%20a%20confidential%20market%20valuation%20for%20my%20facility.%0A%0AProperty%20address%3A%0AApprox%20square%20footage%3A%0ACurrent%20occupancy%3A" class="cta-btn">GET FREE<br>VALUATION</a>
+  </div>
+</div>
+
+<div class="main">
+
+  <div>
+    <div class="section-head">
+      <div class="section-title">Macro Indicators</div>
+      <div class="section-badge" id="macro-badge">LOADING</div>
+    </div>
+    <div class="cards-grid">
+      <div class="card"><div class="card-label">10-Year Treasury</div><div class="card-value" id="m-TNX"><span class="loading">---</span></div><div class="card-sub">KEY BENCHMARK FOR SS DEALS</div></div>
+      <div class="card"><div class="card-label">Fed Funds Rate</div><div class="card-value" id="m-FFR">4.33%</div><div class="card-sub">FOMC TARGET RANGE</div></div>
+      <div class="card"><div class="card-label">30-Year Mortgage</div><div class="card-value" id="m-MORT"><span class="loading">---</span></div><div class="card-sub">FREDDIE MAC WEEKLY AVG</div></div>
+      <div class="card"><div class="card-label">SS Avg Cap Rate</div><div class="card-value">6.0%</div><div class="card-sub">NATIONAL AVG · ALL ASSET TYPES</div></div>
+    </div>
+  </div>
+
+  <div>
+    <div class="section-head">
+      <div class="section-title">Self-Storage REITs</div>
+      <div class="section-badge" id="reit-badge">LOADING</div>
+    </div>
+    <div class="reit-grid">
+      <div class="card"><div class="card-label">Public Storage (PSA)</div><div class="card-value" id="r-PSA"><span class="loading">---</span></div><div class="card-change" id="r-PSA-ch"><span class="neutral">--</span></div><div class="card-sub">LARGEST SS REIT · NYSE</div></div>
+      <div class="card"><div class="card-label">CubeSmart (CUBE)</div><div class="card-value" id="r-CUBE"><span class="loading">---</span></div><div class="card-change" id="r-CUBE-ch"><span class="neutral">--</span></div><div class="card-sub">3RD-PARTY MGMT LEADER</div></div>
+      <div class="card"><div class="card-label">Extra Space (EXR)</div><div class="card-value" id="r-EXR"><span class="loading">---</span></div><div class="card-change" id="r-EXR-ch"><span class="neutral">--</span></div><div class="card-sub">LARGEST BY LOCATIONS · NYSE</div></div>
+      <div class="card"><div class="card-label">Nat'l Storage (NSA)</div><div class="card-value" id="r-NSA"><span class="loading">---</span></div><div class="card-change" id="r-NSA-ch"><span class="neutral">--</span></div><div class="card-sub">PRO RATA MODEL · NYSE</div></div>
+      <div class="card"><div class="card-label">RE ETF (VNQ)</div><div class="card-value" id="r-VNQ"><span class="loading">---</span></div><div class="card-change" id="r-VNQ-ch"><span class="neutral">--</span></div><div class="card-sub">VANGUARD REAL ESTATE ETF</div></div>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <div class="section-head">
+        <div class="section-title">Storage Intel Feed</div>
+        <div class="section-badge">7 STORIES</div>
+      </div>
+      <div class="intel-feed">
+        <div class="intel-head"><div class="section-title" style="font-size:10px;">Q1 2026 · SELF-STORAGE NEWS</div></div>
+        <div class="intel-items">
+          <div class="intel-item"><div class="intel-item-meta"><span class="intel-source">COSTAR</span><span class="intel-age">2D AGO</span><span class="intel-tag">CAPITAL MARKETS</span></div><div class="intel-title">Institutional Demand Elevated in Q1 2026</div><div class="intel-summary">Private equity and REIT acquisition activity continues at pace, with cap rate compression in primary markets driving deal flow to secondary and tertiary markets.</div></div>
+          <div class="intel-item"><div class="intel-item-meta"><span class="intel-source">GLOBE STREET</span><span class="intel-age">3D AGO</span><span class="intel-tag">PRICING</span></div><div class="intel-title">Midwest Self-Storage Sales Volume Up 18% YOY</div><div class="intel-summary">Ohio, Michigan, Indiana, and Wisconsin markets seeing increased buyer interest as coastal markets tighten. Mom-and-pop owners commanding record prices.</div></div>
+          <div class="intel-item"><div class="intel-item-meta"><span class="intel-source">EXTRA SPACE STORAGE</span><span class="intel-age">1W AGO</span><span class="intel-tag">REIT</span></div><div class="intel-title">EXR Q4 2025 Same-Store Revenue Growth: +3.2% YOY</div><div class="intel-summary">Same-store NOI up 2.8% despite new supply headwinds in select Sun Belt markets. Occupancy stabilized at 93.4% nationally.</div></div>
+          <div class="intel-item"><div class="intel-item-meta"><span class="intel-source">YARDI MATRIX</span><span class="intel-age">2W AGO</span><span class="intel-tag">SUPPLY</span></div><div class="intel-title">New Supply Pipeline Contracts in 2026</div><div class="intel-summary">Construction financing constraints and higher material costs have slowed new development, creating favorable conditions for existing owners.</div></div>
+          <div class="intel-item"><div class="intel-item-meta"><span class="intel-source">BISNOW</span><span class="intel-age">2W AGO</span><span class="intel-tag">1031 DEMAND</span></div><div class="intel-title">1031 Exchange Demand Driving Premium Pricing</div><div class="intel-summary">Exchange buyers willing to pay above-market prices for stabilized assets with occupancy above 90%, compressing cap rates 25-50 bps in competitive bidding.</div></div>
+          <div class="intel-item"><div class="intel-item-meta"><span class="intel-source">CUSHMAN &amp; WAKEFIELD</span><span class="intel-age">3W AGO</span><span class="intel-tag">MARKET</span></div><div class="intel-title">Avg Price PSF Now $159, Down 12% From 2023 Peak</div><div class="intel-summary">Valuations have tapered after peak but remain historically strong. Cap rates averaging 5.8% over the past six quarters nationally.</div></div>
+          <div class="intel-item"><div class="intel-item-meta"><span class="intel-source">STORAGECAFE</span><span class="intel-age">3W AGO</span><span class="intel-tag">RATES</span></div><div class="intel-title">Street Rates Stabilize at $133/mo Nationally Jan 2026</div><div class="intel-summary">Third consecutive month of stabilization. Climate-controlled commanding 25-35% premium. Coastal markets with undersupply continuing to post gains.</div></div>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px;">
+      <div>
+        <div class="section-head"><div class="section-title">Cap Rate Benchmarks</div><div class="section-badge">2026</div></div>
+        <div class="caprate-panel">
+          <div class="panel-head"><div class="section-title" style="font-size:10px;">BY ASSET CLASS · NAT'L AVG</div></div>
+          <div class="caprate-row"><div class="caprate-type">CLASS A / INSTITUTIONAL</div><div class="caprate-bar-wrap"><div class="caprate-bar" style="width:42%"></div></div><div class="caprate-val">4.75%</div></div>
+          <div class="caprate-row"><div class="caprate-type">CLIMATE CONTROLLED</div><div class="caprate-bar-wrap"><div class="caprate-bar" style="width:52%"></div></div><div class="caprate-val">5.25%</div></div>
+          <div class="caprate-row"><div class="caprate-type">STABILIZED / PRIMARY</div><div class="caprate-bar-wrap"><div class="caprate-bar" style="width:60%"></div></div><div class="caprate-val">5.75%</div></div>
+          <div class="caprate-row"><div class="caprate-type">SECONDARY MARKETS</div><div class="caprate-bar-wrap"><div class="caprate-bar" style="width:68%"></div></div><div class="caprate-val">6.25%</div></div>
+          <div class="caprate-row"><div class="caprate-type">VALUE-ADD / LEASE-UP</div><div class="caprate-bar-wrap"><div class="caprate-bar" style="width:77%"></div></div><div class="caprate-val">6.75%</div></div>
+          <div class="caprate-row"><div class="caprate-type">RURAL / TERTIARY</div><div class="caprate-bar-wrap"><div class="caprate-bar" style="width:88%"></div></div><div class="caprate-val">7.50%</div></div>
+        </div>
+      </div>
+      <div>
+        <div class="section-head"><div class="section-title">Oasis Intelligence</div><div class="section-badge">DAILY BRIEFING</div></div>
+        <div class="ai-panel">
+          <div class="ai-title">◈ MARKET CONTEXT</div>
+          <div class="ai-content">Sector enters Q1 2026 with <strong>stable fundamentals</strong> and improving transaction velocity. Fed hold on rates has brought debt cost certainty.<br><br><strong>Midwest and Southeast</strong> markets seeing accelerated buyer interest. MI, OH, WI, PA owners represent highest opportunity segment.<br><br><strong>Key tailwind:</strong> New supply pipeline contracting. Buyers paying premiums for occupancy above 85%.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div class="section-head"><div class="section-title">Recent Self-Storage Transactions</div><div class="section-badge">JAN-FEB 2026</div></div>
+    <div class="trans-table">
+      <div class="trans-head"><div class="section-title" style="font-size:10px;">VERIFIED CLOSINGS · SOURCE: LISTSELFSTORAGE.COM</div></div>
+      <table>
+        <thead><tr><th>PROPERTY</th><th>LOCATION</th><th>NRSF</th><th>UNITS</th><th>BUYER</th><th>BROKER</th><th>DATE</th></tr></thead>
+        <tbody>
+          <tr><td>Boston/Medford Portfolio</td><td><span class="td-state">Boston/Medford, MA</span></td><td class="td-dim">128,764</td><td class="td-dim">1,413</td><td class="td-green">Invesco + Baranof JV</td><td class="td-dim">Newmark</td><td class="td-dim">Feb 2026</td></tr>
+          <tr><td>Go Store It - Nyack</td><td><span class="td-state">Nyack, NY</span></td><td class="td-dim">--</td><td class="td-dim">557</td><td class="td-green">Storage Post</td><td class="td-dim">JLL Capital Markets</td><td class="td-dim">Feb 2026</td></tr>
+          <tr><td>A-Affordable Boat &amp; RV Storage</td><td><span class="td-state">Valley View, TX</span></td><td class="td-dim">175,254</td><td class="td-dim">451</td><td class="td-green">Undisclosed</td><td class="td-dim">Marcus &amp; Millichap</td><td class="td-dim">Feb 2026</td></tr>
+          <tr><td>Wilmer Storage</td><td><span class="td-state">Wilmer, TX</span></td><td class="td-dim">29,800</td><td class="td-dim">192</td><td class="td-green">Momentum Wealth Fund</td><td class="td-dim">Marcus &amp; Millichap</td><td class="td-dim">Feb 2026</td></tr>
+          <tr><td>Mixed-Use Self Storage</td><td><span class="td-state">Hiram, GA</span></td><td class="td-dim">86,780</td><td class="td-dim">438</td><td class="td-green">Checketts Development</td><td class="td-dim">Marcus &amp; Millichap</td><td class="td-dim">Jan 2026</td></tr>
+          <tr><td>South Church Street SS</td><td><span class="td-state">Burlington, NC</span></td><td class="td-dim">14,758</td><td class="td-dim">124</td><td class="td-green">Undisclosed</td><td class="td-dim">Midcoast Properties</td><td class="td-dim">Jan 2026</td></tr>
+          <tr><td>Northside Mini Storage</td><td><span class="td-state">Elgin, MN</span></td><td class="td-dim">26,000</td><td class="td-dim">178</td><td class="td-green">Undisclosed</td><td class="td-dim">Argus / Area Storage Advisors</td><td class="td-dim">Jan 2026</td></tr>
+          <tr><td>CubeSmart - Plainview</td><td><span class="td-state">Plainview, NY</span></td><td class="td-dim">--</td><td class="td-dim">--</td><td class="td-green">Storage Post</td><td class="td-dim">--</td><td class="td-dim">Feb 2026</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<div style="background:linear-gradient(90deg,#0a1a0d,#0f2014,#0a1a0d);border-top:1px solid #2a4a30;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;">
+  <div style="display:flex;align-items:center;gap:14px;">
+    <div style="color:#00e87a;font-size:20px;text-shadow:0 0 12px #00e87a;">◈</div>
+    <div>
+      <div style="font-family:'Orbitron',monospace;font-size:10px;color:#00e87a;letter-spacing:3px;margin-bottom:4px;">THINKING ABOUT SELLING YOUR FACILITY?</div>
+      <div style="font-size:10px;color:#5a7560;letter-spacing:1px;">Oasis Investment Sales specializes exclusively in self-storage. Hundreds of millions closed nationwide.</div>
+    </div>
+  </div>
+  <div style="display:flex;gap:24px;align-items:center;flex-shrink:0;margin-left:40px;">
+    <div style="text-align:right;">
+      <div style="font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:600;color:#e8f0ea;">Jon Fawley</div>
+      <div style="font-size:9px;color:#5a7560;margin-bottom:3px;">President, Oasis Investment Sales</div>
+      <a href="tel:9376025193" style="display:block;font-size:10px;color:#00e87a;text-decoration:none;">937-602-5193</a>
+      <a href="mailto:jfawley@oasis-cre.com" style="font-size:10px;color:#5a7560;text-decoration:none;">jfawley@oasis-cre.com</a>
+    </div>
+    <div style="width:1px;height:40px;background:#1a2e1e;"></div>
+    <div style="text-align:right;">
+      <div style="font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:600;color:#e8f0ea;">Storm Smitherman</div>
+      <div style="font-size:9px;color:#5a7560;margin-bottom:3px;">Agent</div>
+      <a href="mailto:storm@oasis-cre.com" style="font-size:10px;color:#5a7560;text-decoration:none;">storm@oasis-cre.com</a>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="footer-data">DATA: OASIS-REPORT.VERCEL.APP · FRED · LISTSELFSTORAGE.COM — OASIS-CRE.COM</div>
+  <div class="footer-disclaimer">NOT INVESTMENT ADVICE · © 2026 OASIS INVESTMENT SALES</div>
+</div>
+
+<script>
+const API = 'https://oasis-report.vercel.app';
+function updateClock() {
+  const now = new Date();
+  document.getElementById('clock').textContent = now.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit',second:'2-digit',timeZone:'America/New_York',hour12:false})+' EST';
+  const day = now.toLocaleDateString('en-US',{weekday:'short',timeZone:'America/New_York'});
+  const [h,m] = now.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit',hour12:false,timeZone:'America/New_York'}).split(':').map(Number);
+  const open = !['Sat','Sun'].includes(day)&&h*60+m>=570&&h*60+m<960;
+  document.getElementById('mkt-status').textContent = open?'MKT OPEN':'MKT CLOSED';
+  document.getElementById('mkt-status').style.color = open?'#00e87a':'#5a7560';
+}
+setInterval(updateClock,1000); updateClock();
+function fmt(v,d=2){return v!=null?Number(v).toFixed(d):'---';}
+function fmtP(v){return v!=null?'$'+fmt(v):'---';}
+function fmtPct(v){return v!=null?(v>=0?'+':'')+fmt(v)+'%':'--';}
+function fmtC(v){return v!=null?(v>=0?'+':'')+fmt(v):'--';}
+function applyQ(sym,price,change,pct){
+  if(price==null)return;
+  const up=change>=0,cls=up?'up':'dn',arr=up?'▲':'▼';
+  const ev=document.getElementById('r-'+sym);if(ev)ev.textContent=fmtP(price);
+  const ec=document.getElementById('r-'+sym+'-ch');if(ec)ec.innerHTML='<span class="'+cls+'">'+arr+' '+fmtC(change)+' ('+fmtPct(pct)+')</span>';
+  ['t-'+sym,'t-'+sym+'2'].forEach(id=>{const e=document.getElementById(id);if(e){e.textContent=fmtP(price);e.className='ticker-val '+cls;}});
+  ['t-'+sym+'-ch','t-'+sym+'-ch2'].forEach(id=>{const e=document.getElementById(id);if(e){e.textContent=fmtPct(pct);e.className=cls;}});
+}
+async function loadData(){
+  try{
+    const[qR,mR]=await Promise.all([fetch(API+'/api/quotes'),fetch(API+'/api/macro')]);
+    const qD=await qR.json(),mD=await mR.json();
+    if(qD.success&&qD.quotes){
+      const q=qD.quotes;
+      ['PSA','CUBE','EXR','NSA'].forEach(s=>{if(q[s])applyQ(s,q[s].price,q[s].change,q[s].changePct);});
+      if(q.VNQ){const e=document.getElementById('r-VNQ');if(e)e.textContent=fmtP(q.VNQ.price);['t-VNQ','t-VNQ2'].forEach(id=>{const el=document.getElementById(id);if(el){el.textContent=fmtP(q.VNQ.price);el.className='ticker-val '+(q.VNQ.change>=0?'up':'dn');}});}
+      if(q.TNX){['t-TNX','t-TNX2','m-TNX'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent=fmt(q.TNX.price)+'%';});}
+      const rb=document.getElementById('reit-badge');if(rb)rb.textContent=qD.source==='fallback'?'CACHED':'LIVE · NYSE';
+    }
+    if(mD.success&&mD.macro){
+      const m=mD.macro;
+      if(m.treasury10yr){['m-TNX','t-TNX','t-TNX2'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent=fmt(m.treasury10yr.value)+'%';});}
+      if(m.mortgage30yr){const e=document.getElementById('m-MORT');if(e)e.textContent=fmt(m.mortgage30yr.value)+'%';}
+      if(m.fedFunds){const e=document.getElementById('m-FFR');if(e)e.textContent=fmt(m.fedFunds.value)+'%';}
+      const mb=document.getElementById('macro-badge');if(mb)mb.textContent='LIVE · FRED';
+    }
+    const now=new Date();
+    const lu=document.getElementById('last-update');if(lu)lu.textContent=now.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit',hour12:false,timeZone:'America/New_York'})+' EST';
+  }catch(e){console.warn('API error:',e.message);}
+}
+loadData(); setInterval(loadData,300000);
+</script>
+</body>
+</html>
