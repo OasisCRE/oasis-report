@@ -392,8 +392,39 @@ async function loadData() {
   }
 }
 
+async function loadMacro() {
+  const FRED = 'https://api.stlouisfed.org/fred/series/observations';
+  const KEY = 'f508458aead2a2571ba38aada0c96706';
+  const params = '&sort_order=desc&limit=1&file_type=json&api_key=' + KEY;
+  try {
+    const [tnxResp, mortResp] = await Promise.all([
+      fetch(FRED + '?series_id=DGS10' + params),
+      fetch(FRED + '?series_id=MORTGAGE30US' + params)
+    ]);
+    const [tnxData, mortData] = await Promise.all([tnxResp.json(), mortResp.json()]);
+    const tnxVal = tnxData.observations && tnxData.observations[0] && tnxData.observations[0].value;
+    const mortVal = mortData.observations && mortData.observations[0] && mortData.observations[0].value;
+    if (tnxVal && tnxVal !== '.') {
+      const el = document.getElementById('m-TNX');
+      if (el) el.textContent = parseFloat(tnxVal).toFixed(2) + '%';
+      const tickers = ['t-TNX','t-TNX2'];
+      tickers.forEach(id => { const e = document.getElementById(id); if (e) e.textContent = parseFloat(tnxVal).toFixed(2) + '%'; });
+    }
+    if (mortVal && mortVal !== '.') {
+      const el = document.getElementById('m-MORT');
+      if (el) el.textContent = parseFloat(mortVal).toFixed(2) + '%';
+    }
+    const mb = document.getElementById('macro-badge');
+    if (mb && tnxVal) mb.textContent = 'LIVE';
+  } catch(e) {
+    // fallbacks already set in HTML
+  }
+}
+
 loadData();
+loadMacro();
 setInterval(loadData, 300000);
+setInterval(loadMacro, 3600000);
 </script>
 </body>
 </html>
